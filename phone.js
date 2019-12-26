@@ -53,63 +53,62 @@ console.log(num);
 
 var numGlo = numberAndPrefix.slice(5,20);
 
+ var displayScreen = document.getElementById("anime");
+myAccountBalance = JSON.parse(localStorage.accountBalance);
+
 
 
 if ( numberAndPrefix == "") {
-	alert("provide a number to dial")
+	displayScreen.innerHTML = "provide a number to dial";
 		}
 
 else if ( prefix == "126") {
 	if ( networkSelect.value !== "airtel") {
-		alert("You selected the wrong network");
+		displayScreen.innerHTML = "You selected the wrong network";
 	}else runDial();
 }
 else if ( prefix === "123") {
 	if ( networkSelect.value !== "glo") {
-		alert("You selected the wrong network");
-	}
+		displayScreen.innerHTML = "You selected the wrong network";
+	}else runDial();
 }
 else if ( prefix == "222") {
 	if ( networkSelect.value !== "etisalat") {
-		alert("You selected the wrong network");
+		displayScreen.innerHTML = "You selected the wrong network";
 	}else runDial();
 }
 else if ( prefix == "555") {
 	if ( networkSelect.value !== "mtn" ) {
-		alert("You selected the wrong network");
-	}
+		displayScreen.innerHTML = "You selected the wrong network";
+	}else runDial();
 }
 
 else if ( numberAndPrefix === "*124#") {
 	if (networkSelect.value !== "airtel") {
-		alert(`You selected the wrong network`)
+		displayScreen.innerHTML = `You selected the wrong network`;
 	}else {
-		myAccountBalance = JSON.parse(localStorage.accountBalance);
-		alert(`Your Airtel account balance is : ${myAccountBalance.airtel}`);
+		displayScreen.innerHTML = `Your Airtel account balance is : ${myAccountBalance.airtel}`;
 	}
 }
 else if ( numberAndPrefix == "*556#") {
 	if (networkSelect.value !== "mtn") {
-		alert(`You selected the wrong network`)
+		displayScreen.innerHTML = `You selected the wrong network`;
 	}else {
-		myAccountBalance = JSON.parse(localStorage.accountBalance);
-		alert(`Your MTN account balance is : ${myAccountBalance.mtn}`);
+		displayScreen.innerHTML = `Your MTN account balance is : ${myAccountBalance.mtn}`;
 	}
 }
 else if ( numberAndPrefix == "#124*1#") {
 	if (networkSelect.value !== "glo") {
-		alert(`You selected the wrong network`)
+		displayScreen.innerHTML = `You selected the wrong network`;
 	}else {
-		myAccountBalance = JSON.parse(localStorage.accountBalance);
-		alert(`Your GLO account balance is : ${myAccountBalance.glo}`);
+		displayScreen.innerHTML = `Your GLO account balance is : ${myAccountBalance.glo}`;
 	}
 }
 else if ( numberAndPrefix == "*232#") {
 	if (networkSelect.value !== "etisalat") {
-		alert(`You selected the wrong network`)
+		displayScreen.innerHTML = `You selected the wrong network`;
 	}else {
-		myAccountBalance = JSON.parse(localStorage.accountBalance);
-		alert(`Your 9mobile account balance is : ${myAccountBalance.etisalat}`);
+		displayScreen.innerHTML = `Your 9mobile account balance is : ${myAccountBalance.etisalat}`;
 	}
 }
 
@@ -125,6 +124,10 @@ function runDial() {
 
 for (var i = 0; i < myLocalOutput.length; i++) {
 	console.log( myLocalOutput[i].used)
+if (networkSelect.value = "glo") {
+	 num = numberAndPrefix.slice(5,20);
+} else num = numberAndPrefix.slice(5,21);
+
 	if (num == myLocalOutput[i].number && networkSelect.value == myLocalOutput[i].network && myLocalOutput[i].used == 'new') {
 		myLocalOutput[i].used = 'used';
 		alert(`Your account has been successfully loaded with ${myLocalOutput[i].amount} on your ${myLocalOutput[i].network} network`)
@@ -137,7 +140,6 @@ for (var i = 0; i < myLocalOutput.length; i++) {
 		console.log(newAccountBalance[myLocalOutput[i].network]);
 		localStorage.accountBalance = JSON.stringify(newAccountBalance);
 		console.log(localStorage.accountBalance);
-
 	}
 }
 localStorage.store = JSON.stringify(myLocalOutput);
